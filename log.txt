@@ -1,0 +1,23 @@
+commit e1ff8959d36bb1f0eca7cd23c2d5fc0ba8658dfa
+Author: Nathan Wolfe <nwolfe409@gmail.com>
+Date:   Wed Feb 24 03:19:57 2016 +0000
+
+    working base code
+
+commit 2fb7dbb78cd4ed9864f0a5fdae7f95900adec458
+Author: nwolfe409 <nwolfe409@gmail.com>
+Date:   Tue Feb 23 19:47:51 2016 -0600
+
+    started brands section
+
+commit 33d7eb73eb256a9a8ab4c36885a45e3f91171251
+Author: nwolfe409 <nwolfe409@gmail.com>
+Date:   Mon Feb 22 23:47:58 2016 -0600
+
+    Products selection version one completed
+
+commit cd7be3134d9e9894b80d020d40a6969d753d35de
+Author: Nathan Wolfe <nwolfe409@gmail.com>
+Date:   Mon Feb 22 16:50:21 2016 -0600
+
+    Initial commit
