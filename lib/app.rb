@@ -92,43 +92,54 @@ end
 
 def parse_brands # For each brand in the data set:
 	unique_brands = $products_hash["items"].map { |item| item["brand"] }.uniq
-	  unique_brands.each_with_index do | brand, index |
-
-	    brands_toys = $products_hash["items"].select { |item| item["brand"] == brand }
-	    total_stock_brand = 0
-	    total_full_price_brand = 0
-	    brand_sales = 0
-
-	    brands_toys.each do |item|
-	      item["purchases"].each do |el|
-	        brand_sales += el["price"].to_f
-	      end
-	    end
-
-	    brands_toys.each { |toy| total_stock_brand += toy["stock"].to_i }
-	    brands_toys.each { |toy| total_full_price_brand += toy["full-price"].to_f }
-			print_brands_data(brand)
-	  end
+	#puts unique_brands
+	unique_brands.each_with_index do | brand, index |
+		#puts "each_with_index #{index} and #{brand}"
+		print_brands_data(brand)
 	end
+end
 
-
-
-	# Print the name of the brand
-	# Count and print the number of the brand's toys we stock
-	# Calculate and print the average price of the brand's toys
-	# Calculate and print the total sales volume of all the brand's toys combined
-
-def brands_items_data
-
+def brands_items_data(brand)
+	brands_items = $products_hash["items"].select { |item| item["brand"] == brand }
+	return brands_items
 end
 
 def print_brands_data(brand)
-	puts "Brand: #{brand}"
-	puts "current stock on hand: #{total_stock_brand}"
-	puts "Average price: #{(total_full_price_brand/brands_toys.length).round(2)}"
-	puts "Total sales: #{brand_sales.round(2)}"
+	puts "Brand: #{brand}" # Print the name of the brand
+	
+	total_stock_brand(brand)
+	
+	brand_average_price(brand)
+	
+	brand_sales(brand)
+	
 	dividing_line
 end
 
+def brand_sales(brand)	# Calculate and print the total sales volume of all the brand's toys combined
+	brand_sales = 0											
+	brands_items_data(brand).each do |item|
+		item["purchases"].each do |count|
+	        brand_sales += count["price"].to_f
+	    end
+	end
+	puts "Total sales of #{brand}: #{brand_sales.round(2)}"	# Calculate and print the total sales volume of all the brand's toys combined
+end
+
+def brand_average_price(brand)	# Calculate and print the average price of the brand's toys
+	total_full_price_brand = 0																
+	brands_items_data(brand).each do |toy|																	
+		total_full_price_brand += toy["full-price"].to_f													
+	end																	
+	puts "Average price of #{brand}: #{(total_full_price_brand/brands_items_data(brand).length).round(2)}"	
+end
+
+def total_stock_brand(brand)	# Count and print the number of the brand's toys we stock
+	total_stock_brand = 0							
+	brands_items_data(brand).each do |toy|		
+		total_stock_brand += toy["stock"].to_i
+	end								
+	puts "#{brand} on hand: #{total_stock_brand}"	
+end
 
 start
