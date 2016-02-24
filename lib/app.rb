@@ -15,10 +15,10 @@ def setup_files #method to open the JSON file and parse the data
 end
 
 def create_report # start report generation
-	sales_report_header
-	print_date
-	products_header
-	parse_products
+	#sales_report_header
+	#print_date
+	#products_header
+	#parse_products
 	brands_report_header
 	parse_brands
 end
@@ -107,13 +107,7 @@ def parse_brands # For each brand in the data set:
 
 	    brands_toys.each { |toy| total_stock_brand += toy["stock"].to_i }
 	    brands_toys.each { |toy| total_full_price_brand += toy["full-price"].to_f }
-
-	    puts "Brand: #{brand}"
-	    puts "current stock on hand: #{total_stock_brand}"
-	    puts "Average price: #{(total_full_price_brand/brands_toys.length).round(2)}"
-	    puts "Total sales: #{brand_sales.round(2)}"
-
-
+			print_brands_data(brand)
 	  end
 	end
 
@@ -127,5 +121,14 @@ def parse_brands # For each brand in the data set:
 def brands_items_data
 
 end
+
+def print_brands_data(brand)
+	puts "Brand: #{brand}"
+	puts "current stock on hand: #{total_stock_brand}"
+	puts "Average price: #{(total_full_price_brand/brands_toys.length).round(2)}"
+	puts "Total sales: #{brand_sales.round(2)}"
+	dividing_line
+end
+
 
 start
